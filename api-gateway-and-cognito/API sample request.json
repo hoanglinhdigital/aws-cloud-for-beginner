@@ -1,0 +1,27 @@
+{
+    "firstNum":5,
+    "secondNum": 25,
+    "operator": "ADD"
+}
+//-----------------
+{
+    "firstNum":5,
+    "secondNum": 25,
+    "operator": "SUBSTRACT"
+}
+//-----------------
+{
+    "firstNum":5,
+    "secondNum": 25,
+    "operator": "MULTIPLE"
+}
+//-----------------
+{
+    "firstNum":25,
+    "secondNum": 5,
+    "operator": "DEVIDE"
+}
+
+// API KEY
+osomHyFgGa40SgIMfbqPI98VhnsUug6V7K7Osi2q
+

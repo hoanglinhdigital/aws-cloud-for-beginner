@@ -1,0 +1,34 @@
+#######Check access log for httpd #####
+
+#Refresh server serveral time (F5)
+#Cat Log file
+cat /var/log/httpd/access_log
+
+
+###### Install cloudwatch Agent #####
+#Install
+sudo yum install amazon-cloudwatch-agent
+
+#Run the wizard
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+
+#Then follow the instrution to setup
+
+#log file to monitor
+/var/log/httpd/access_log
+/var/log/httpd/error_log
+
+#Check config file created by Wizard
+cat /opt/aws/amazon-cloudwatch-agent/bin/config.json
+
+#Fetch config file
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file://opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+
+#Check status of CW Agent
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+
+#Start if not started
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+
+
+

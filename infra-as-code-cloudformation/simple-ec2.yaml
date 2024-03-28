@@ -1,0 +1,43 @@
+Parameters:
+  SubnetId:
+    Description: SubnetID for EC2
+    Type: AWS::EC2::Subnet::Id
+  SecurityGroupIds:
+    Description: List of security group id that apply to instance
+    Type: List<AWS::EC2::SecurityGroup::Id>
+  AMI:
+    Description: AMI id for EC2 instance
+    Type: String
+  Keypair:
+    Description: Keypair for EC2
+    Type: String
+  TagName:
+    Description: Name tag for EC2
+    Type: String
+Resources:
+  TestEIP:
+    Type: AWS::EC2::EIP
+    Properties: 
+      Domain: String
+      InstanceId: !Ref MyEC2Instance
+
+  MyEC2Instance: 
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: !Ref AMI
+      KeyName: !Ref Keypair
+      InstanceType: "t3.micro"
+      BlockDeviceMappings: 
+      - DeviceName: "/dev/sdm"
+        Ebs: 
+          VolumeType: "gp2"
+          DeleteOnTermination: "false"
+          VolumeSize: "20"
+      NetworkInterfaces: 
+      - AssociatePublicIpAddress: "true"
+        DeviceIndex: "0"
+        GroupSet: !Ref SecurityGroupIds
+        SubnetId: !Ref SubnetId
+      Tags: 
+        - Key: Name
+          Value: !Ref TagName

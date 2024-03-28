@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "66572b38-ea87-414b-b467-962c5ec51ebf",
+		"name": "Udemy-cloud-basic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calculator API Gateway-ADD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstNum\":5,\r\n    \"secondNum\": 25,\r\n    \"operator\": \"ADD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://af35gvwb7i.execute-api.ap-southeast-1.amazonaws.com/dev/calculate",
+					"protocol": "https",
+					"host": [
+						"af35gvwb7i",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator API Gateway- SUBSTRACT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstNum\":5,\r\n    \"secondNum\": 25,\r\n    \"operator\": \"SUBSTRACT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://af35gvwb7i.execute-api.ap-southeast-1.amazonaws.com/dev/calculate",
+					"protocol": "https",
+					"host": [
+						"af35gvwb7i",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator API Gateway- MULTIPLE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstNum\":5,\r\n    \"secondNum\": 25,\r\n    \"operator\": \"MULTIPLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://af35gvwb7i.execute-api.ap-southeast-1.amazonaws.com/dev/calculate",
+					"protocol": "https",
+					"host": [
+						"af35gvwb7i",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculator API Gateway- DEVIDE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstNum\":25,\r\n    \"secondNum\": 5,\r\n    \"operator\": \"DEVIDE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://af35gvwb7i.execute-api.ap-southeast-1.amazonaws.com/dev/calculate",
+					"protocol": "https",
+					"host": [
+						"af35gvwb7i",
+						"execute-api",
+						"ap-southeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

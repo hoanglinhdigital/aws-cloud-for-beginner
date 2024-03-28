@@ -1,0 +1,2 @@
+#Write dummy log to log file
+echo 'this is test ERROR log' >> /var/log/httpd/access_log

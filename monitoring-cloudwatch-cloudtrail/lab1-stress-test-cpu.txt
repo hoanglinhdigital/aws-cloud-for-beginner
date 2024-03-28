@@ -1,0 +1,12 @@
+#Alarm name:
+udemy-monitor-test-server-network-in-over-5000
+udemy-test-server-cpu-higher-than-20-percents
+
+#Install tool to stress test
+sudo amazon-linux-extras install epel -y
+sudo yum install stress -y
+
+#Start test
+sudo stress --cpu 2 --timeout 180
+
+

@@ -1,0 +1,12 @@
+#Filter for send to Lambda
+{
+    "sendTo":[
+        "LAMBDA"
+    ]
+}
+#Filter for send to SQS
+{
+    "sendTo":[
+        "SQS"
+    ]
+}
