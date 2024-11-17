@@ -4,4 +4,4 @@ docker build -t my-httpd .
 
 docker images
 
-docker run -dit --name my-httpd-app -p 8080:80 my-httpd
+docker run -dit --name my-httpd-app -p 8080:80 my-httpd:v1.0
