@@ -1,0 +1,73 @@
+{
+  "Comment": "Process student CSV file and load to DynamoDB",
+  "StartAt": "ProcessStudentData",
+  "States": {
+    "ProcessStudentData": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${ProcessStudentsLambdaArn}",
+        "Payload": {
+          "bucket.$": "$.detail.bucket.name",
+          "key.$": "$.detail.object.key"
+        }
+      },
+      "ResultPath": "$.lambdaResult",
+      "ResultSelector": {
+        "statusCode.$": "$.Payload.statusCode",
+        "body.$": "$.Payload"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "NotifyFailure"
+        }
+      ],
+      "Next": "CheckProcessingStatus"
+    },
+    "CheckProcessingStatus": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.lambdaResult.statusCode",
+          "NumericEquals": 200,
+          "Next": "NotifySuccess"
+        }
+      ],
+      "Default": "NotifyFailure"
+    },
+    "NotifySuccess": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "${SNSTopicArn}",
+        "Subject": "✅ Student Data Processing - SUCCESS",
+        "Message.$": "States.Format('Student data processing completed successfully!\n\nFile: s3://{}/{}\n\nResults:\n- Total Records: {}\n- Successfully Loaded: {}\n- Failed: {}\n\nTimestamp: {}', $.lambdaResult.body.bucket, $.lambdaResult.body.key, $.lambdaResult.body.total_records, $.lambdaResult.body.success_count, $.lambdaResult.body.failed_count, $$.State.EnteredTime)"
+      },
+      "End": true
+    },
+    "NotifyFailure": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sns:publish",
+      "Parameters": {
+        "TopicArn": "${SNSTopicArn}",
+        "Subject": "❌ Student Data Processing - FAILED",
+        "Message.$": "States.Format('Student data processing failed!\n\nFile: s3://{}/{}\n\nError Details:\n{}\n\nTimestamp: {}', $.detail.bucket.name, $.detail.object.key, States.JsonToString($.error), $$.State.EnteredTime)"
+      },
+      "End": true
+    }
+  }
+}

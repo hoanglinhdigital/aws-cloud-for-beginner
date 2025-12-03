@@ -1,0 +1,6 @@
+student_id,first_name,last_name,email,age,major,enrollment_date
+STU001,John,Doe,john.doe@email.com,20,Computer Science,2024-09-01
+STU002,Jane,Smith,jane.smith@email.com,22,Business Administration,2024-09-01
+STU003,Michael,Johnson,michael.j@email.com,19,Engineering,2024-09-01
+STU004,Emily,Brown,emily.brown@email.com,21,Mathematics,2024-09-01
+STU005,David,Wilson,david.w@email.com,23,Physics,2024-09-01
