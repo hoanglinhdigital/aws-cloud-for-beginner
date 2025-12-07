@@ -12,7 +12,7 @@ StepFunction ->
     Start
     Lambda -> DyamoDB Table
     Success -> SNS
-    Failed -> SNS
+    Failed  -> SNS
     End
 
 ## Sample code inside /code folder.
@@ -26,64 +26,76 @@ aws dynamodb create-table \
         AttributeName=student_id,AttributeType=S \
     --key-schema \
         AttributeName=student_id,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST \
+    --billing-mode PAY_PER_REQUEST
 ```
 ### Step 2: Create SNS topic
 ```
-aws sns create-topic --name StudentProcessingNotifications
+aws sns create-topic --name udemy-demo-stepfunctions-topic
 ```
-Subscribe your email (replace with your email)
+
+Using below command to subscribe your email (replace with your email and Topic ARN)
+*Or using AWS console
 ```
 aws sns subscribe \
-    --topic-arn arn:aws:sns:us-east-1:YOUR_ACCOUNT_ID:StudentProcessingNotifications \
+    --topic-arn arn:aws:sns:ap-southeast-1:586098608758:udemy-demo-stepfunctions-topic \
     --protocol email \
-    --notification-endpoint your-email@example.com
+    --notification-endpoint hoanglinhdigital@gmail.com
+
 ```
-*Or using AWS console
+
 
 ### Step 3: Create Lambda function with sample code.
+Function name: `student-processing-to-dynamo-db`
 Code file: `student-process.py`
 
-### Step 4: Assign more permissino for Lambda
-*Using `DynamoDBFullAccess` for demo purpose.
+### Step 4: Assign more permission for Lambda
+*Using `AmazonDynamoDBFullAccess` and `AmazonS3ReadOnlyAccess` for demo purpose.
 
-### Step 5: Creat step function with Definition file.
+### Step 5: Create step function with Definition file.
+Name: `udemy-demo-student-process`
 Definition file: `step_function_definition.json`
+*Replace below Placeholder with your information:
+    Line #9: `${ProcessStudentsLambdaArn}`
+    Line #58, 71: `${SNSTopicArn}`
 
-### Step 6: Add more policy for StepFunctions role.
+After import, check below component as your setting and make adjustment if needed:  
+- Lambda Function setting
+- SNS notification setting for Success and Fail case:
+### Step 6: [Optional] Add more policy for StepFunctions role.
 Policy file: `stepfunction-role.json`
 
 ### Step 7: Create S3 Bucket
-# Create bucket (use a unique name)
-```
-aws s3 mb s3://student-data-upload-bucket-YOUR_UNIQUE_ID
-```
-
+*NOTE: Must be unique name and the same region with other resources.
+Enable EventBridge Notifications on Your S3 Bucket
+• 	Open the Amazon S3 console.
+• 	Select your bucket → Properties tab.
+• 	Scroll to Event Notifications → Amazon EventBridge.
+• 	Turn Send notifications to Amazon EventBridge → On.
+• 	Save changes.
+⚠️ Note: It may take ~5 minutes for this setting to propagate.
 
 ### Step 8: Configure EventBridge rule (for trigger from S3 -> StepFunctions)
-Enable EventBridge notifications
+Go to EventBridge and create an event to catch s3 Object Created the trigger StepFunctions.
+Detail event paternn (replace with your bucket name)
 ```
-aws s3api put-bucket-notification-configuration \
-    --bucket student-data-upload-bucket-YOUR_UNIQUE_ID \
-    --notification-configuration '{
-      "EventBridgeConfiguration": {}
-    }'
+{
+  "source": ["aws.s3"],
+  "detail-type": ["Object Created"],
+  "detail": {
+    "bucket": {
+      "name": ["udemy-demo-students-linh"]
+    },
+    "object": {
+      "key": [{
+        "suffix": ".csv"
+      }]
+    }
+  }
+}
 ```
-
-Modify file: `eventbridge-rule-pattern.json`
-Create EventBridge rule
-```
-aws events put-rule \
-    --name StudentCSVUploadRule \
-    --event-pattern file://eventbridge-rule-pattern.json \
-    --state ENABLED
-```
-Add Step Functions as target
-```
-aws events put-targets \
-    --rule StudentCSVUploadRule \
-    --targets "Id"="1","Arn"="arn:aws:states:us-east-1:YOUR_ACCOUNT_ID:stateMachine:StudentProcessingStateMachine","RoleArn"="arn:aws:iam::YOUR_ACCOUNT_ID:role/StudentStepFunctionsRole"
-```
+Add Needed Permission for EventBridge's IAM Role (Allow it to trigger Stepfunctions)
+    Permission name: `states:StartExecution`
+    Resource: `*`
 
 ### Step 9: Test
 Upload `students.csv` file to S3 bucket.

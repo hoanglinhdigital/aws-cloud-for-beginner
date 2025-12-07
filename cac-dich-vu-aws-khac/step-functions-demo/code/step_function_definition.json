@@ -6,7 +6,7 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "Parameters": {
-        "FunctionName": "${ProcessStudentsLambdaArn}",
+        "FunctionName": "arn:aws:lambda:ap-northeast-1:586098608758:function:student-processing-to-dynamo-db:$LATEST",
         "Payload": {
           "bucket.$": "$.detail.bucket.name",
           "key.$": "$.detail.object.key"
@@ -31,7 +31,9 @@
       ],
       "Catch": [
         {
-          "ErrorEquals": ["States.ALL"],
+          "ErrorEquals": [
+            "States.ALL"
+          ],
           "ResultPath": "$.error",
           "Next": "NotifyFailure"
         }
@@ -53,9 +55,12 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::sns:publish",
       "Parameters": {
-        "TopicArn": "${SNSTopicArn}",
+        "TopicArn": "arn:aws:sns:ap-northeast-1:586098608758:udemy-demo-stepfunctions-topic",
         "Subject": "✅ Student Data Processing - SUCCESS",
-        "Message.$": "States.Format('Student data processing completed successfully!\n\nFile: s3://{}/{}\n\nResults:\n- Total Records: {}\n- Successfully Loaded: {}\n- Failed: {}\n\nTimestamp: {}', $.lambdaResult.body.bucket, $.lambdaResult.body.key, $.lambdaResult.body.total_records, $.lambdaResult.body.success_count, $.lambdaResult.body.failed_count, $$.State.EnteredTime)"
+        "Message": {
+          "result": "SUCCESS",
+          "message": "Successfully to proces csv and insert to DynamoDB"
+        }
       },
       "End": true
     },
@@ -63,9 +68,12 @@
       "Type": "Task",
       "Resource": "arn:aws:states:::sns:publish",
       "Parameters": {
-        "TopicArn": "${SNSTopicArn}",
+        "TopicArn": "arn:aws:sns:ap-northeast-1:586098608758:udemy-demo-stepfunctions-topic",
         "Subject": "❌ Student Data Processing - FAILED",
-        "Message.$": "States.Format('Student data processing failed!\n\nFile: s3://{}/{}\n\nError Details:\n{}\n\nTimestamp: {}', $.detail.bucket.name, $.detail.object.key, States.JsonToString($.error), $$.State.EnteredTime)"
+        "Message": {
+          "result": "FAILED",
+          "message": "Error has occured"
+        }
       },
       "End": true
     }

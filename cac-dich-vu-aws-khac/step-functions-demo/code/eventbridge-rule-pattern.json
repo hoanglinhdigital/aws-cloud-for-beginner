@@ -3,7 +3,7 @@
   "detail-type": ["Object Created"],
   "detail": {
     "bucket": {
-      "name": ["student-data-upload-bucket-YOUR_UNIQUE_ID"]
+      "name": ["udemy-demo-students-linh"]
     },
     "object": {
       "key": [{
