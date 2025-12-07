@@ -1,0 +1,47 @@
+type Student {
+    student_id: String!
+    first_name: String!
+    last_name: String!
+    email: String!
+    age: Int!
+    major: String!
+    enrollment_date: String!
+    created_at: String!
+}
+
+type Query {
+    getStudent(student_id: String!): Student
+    listStudents(limit: Int, nextToken: String): StudentConnection
+    getStudentsByMajor(major: String!, limit: Int, nextToken: String): StudentConnection
+}
+
+type Mutation {
+    createStudent(input: CreateStudentInput!): Student
+    updateStudent(input: UpdateStudentInput!): Student
+    deleteStudent(student_id: String!): Student
+}
+
+input CreateStudentInput {
+    student_id: String!
+    first_name: String!
+    last_name: String!
+    email: String!
+    age: Int!
+    major: String!
+    enrollment_date: String!
+}
+
+input UpdateStudentInput {
+    student_id: String!
+    first_name: String
+    last_name: String
+    email: String
+    age: Int
+    major: String
+    enrollment_date: String
+}
+
+type StudentConnection {
+    items: [Student]
+    nextToken: String
+}
