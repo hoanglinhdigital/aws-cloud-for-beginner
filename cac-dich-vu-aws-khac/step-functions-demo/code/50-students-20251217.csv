@@ -1,0 +1,51 @@
+student_id,first_name,last_name,email,age,major,enrollment_date
+STU001,James,Anderson,james.anderson@email.com,20,Computer Science,2024-09-01
+STU002,Sarah,Martinez,sarah.martinez@email.com,22,Business Administration,2024-09-01
+STU003,Robert,Garcia,robert.garcia@email.com,19,Engineering,2024-09-01
+STU004,Jennifer,Rodriguez,jennifer.r@email.com,21,Mathematics,2024-09-01
+STU005,William,Lee,william.lee@email.com,23,Physics,2024-09-01
+STU006,Elizabeth,Taylor,elizabeth.t@email.com,20,Biology,2024-09-01
+STU007,Christopher,White,chris.white@email.com,22,Chemistry,2024-09-01
+STU008,Amanda,Harris,amanda.harris@email.com,19,Psychology,2024-09-01
+STU009,Daniel,Clark,daniel.clark@email.com,21,Economics,2024-09-01
+STU010,Jessica,Lewis,jessica.lewis@email.com,24,English Literature,2024-09-01
+STU011,Matthew,Walker,matthew.w@email.com,20,Computer Science,2024-09-01
+STU012,Ashley,Hall,ashley.hall@email.com,22,Business Administration,2024-09-01
+STU013,Joshua,Allen,joshua.allen@email.com,19,Engineering,2024-09-01
+STU014,Nicole,Young,nicole.young@email.com,21,Mathematics,2024-09-01
+STU015,Andrew,King,andrew.king@email.com,23,Physics,2024-09-01
+STU016,Stephanie,Wright,stephanie.w@email.com,20,Biology,2024-09-01
+STU017,Ryan,Lopez,ryan.lopez@email.com,22,Chemistry,2024-09-01
+STU018,Lauren,Hill,lauren.hill@email.com,19,Psychology,2024-09-01
+STU019,Brandon,Scott,brandon.scott@email.com,21,Economics,2024-09-01
+STU020,Megan,Green,megan.green@email.com,24,English Literature,2024-09-01
+STU021,Kevin,Adams,kevin.adams@email.com,20,Computer Science,2024-09-01
+STU022,Rachel,Baker,rachel.baker@email.com,22,Business Administration,2024-09-01
+STU023,Justin,Nelson,justin.nelson@email.com,19,Engineering,2024-09-01
+STU024,Samantha,Carter,samantha.c@email.com,21,Mathematics,2024-09-01
+STU025,Tyler,Mitchell,tyler.mitchell@email.com,23,Physics,2024-09-01
+STU026,Hannah,Perez,hannah.perez@email.com,20,Biology,2024-09-01
+STU027,Zachary,Roberts,zachary.r@email.com,22,Chemistry,2024-09-01
+STU028,Emma,Turner,emma.turner@email.com,19,Psychology,2024-09-01
+STU029,Nathan,Phillips,nathan.p@email.com,21,Economics,2024-09-01
+STU030,Olivia,Campbell,olivia.c@email.com,24,English Literature,2024-09-01
+STU031,Ethan,Parker,ethan.parker@email.com,20,Computer Science,2024-09-01
+STU032,Sophia,Evans,sophia.evans@email.com,22,Business Administration,2024-09-01
+STU033,Jacob,Edwards,jacob.edwards@email.com,19,Engineering,2024-09-01
+STU034,Isabella,Collins,isabella.c@email.com,21,Mathematics,2024-09-01
+STU035,Alexander,Stewart,alex.stewart@email.com,23,Physics,2024-09-01
+STU036,Ava,Sanchez,ava.sanchez@email.com,20,Biology,2024-09-01
+STU037,Noah,Morris,noah.morris@email.com,22,Chemistry,2024-09-01
+STU038,Mia,Rogers,mia.rogers@email.com,19,Psychology,2024-09-01
+STU039,Liam,Reed,liam.reed@email.com,21,Economics,2024-09-01
+STU040,Charlotte,Cook,charlotte.c@email.com,24,English Literature,2024-09-01
+STU041,Mason,Morgan,mason.morgan@email.com,20,Computer Science,2024-09-01
+STU042,Amelia,Bell,amelia.bell@email.com,22,Business Administration,2024-09-01
+STU043,Lucas,Murphy,lucas.murphy@email.com,19,Engineering,2024-09-01
+STU044,Harper,Bailey,harper.bailey@email.com,21,Mathematics,2024-09-01
+STU045,Benjamin,Rivera,benjamin.r@email.com,23,Physics,2024-09-01
+STU046,Evelyn,Cooper,evelyn.cooper@email.com,20,Biology,2024-09-01
+STU047,Henry,Richardson,henry.r@email.com,22,Chemistry,2024-09-01
+STU048,Abigail,Cox,abigail.cox@email.com,19,Psychology,2024-09-01
+STU049,Sebastian,Howard,sebastian.h@email.com,21,Economics,2024-09-01
+STU050,Emily,Ward,emily.ward@email.com,24,English Literature,2024-09-01

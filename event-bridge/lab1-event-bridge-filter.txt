@@ -1,0 +1,30 @@
+#Rule for send SQS
+{
+    "account":["<your-account-id>"],
+    "detail":{
+        "sendTarget":["SQS"]
+    }
+}
+#Rule for send SNS
+{
+    "account":["<your-account-id>"],
+    "detail":{
+        "sendTarget":["SNS"]
+    }
+}
+
+#Sample Test messages:
+#Message 1:
+{
+    "name":"Linh",
+    "sendTarget":"SNS",
+    "message":"This message will be sent to SNS and Email also."
+
+}
+#Message 2:     
+{
+    "name":"Linh",
+    "sendTarget":"SQS",
+    "message":"This message will be sent to SQS only."
+
+}

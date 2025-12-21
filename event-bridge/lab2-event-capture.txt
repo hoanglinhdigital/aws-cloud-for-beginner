@@ -1,0 +1,5 @@
+Tạo một event rule bắt các sự kiện liên quan EC2. 
+*Lưu ý chọn event bus “default”.
+Cấu hình notify sang SNS topic
+Thử tạo EC2 instance, bật/tắt EC2 instance.
+Check mail xem event có notify tới không.
