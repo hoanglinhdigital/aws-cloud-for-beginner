@@ -1,1 +1,8 @@
+Below Lambda Layer are ready to use and can add directly to Lambda Layer using ARN:
+
+Python 3.9:
 arn:aws:lambda:ap-southeast-1:770693421928:layer:Klayers-p39-pillow:1
+Python 3.10:
+arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-p310-Pillow:13
+Python 3.12:
+rn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-p312-Pillow:8
