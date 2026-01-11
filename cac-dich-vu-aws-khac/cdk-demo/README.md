@@ -7,10 +7,12 @@ Kiểm tra bằng lệnh: `cdk --version`
 
 # khởi tạo project CDK
 Tạo mới thư mục tên: `my-ec2-cdk`
+```
 cd my-ec2-cdk
 cdk init app --language typescript
-
+```
 #  Cấu trúc thư mục CDK:
+```
 my-ec2-cdk/
 ├── bin/
 │   └── my-ec2-cdk.ts
@@ -19,9 +21,10 @@ my-ec2-cdk/
 ├── package.json
 ├── cdk.json
 └── tsconfig.json
-...
+```
 
 # Copy đoạn code sau vào /lib/my-ec2-cdk-stack.ts
+```
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -49,18 +52,22 @@ export class MyEc2CdkStack extends cdk.Stack {
     instance.connections.allowFromAnyIpv4(ec2.Port.tcp(22), 'Allow SSH access');
   }
 }
-
+```
 # Copy đoạn code sau vào /bin/my-ec2-cdk.ts
+```
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { MyEc2CdkStack } from '../lib/my-ec2-cdk-stack';
 
 const app = new cdk.App();
 new MyEc2CdkStack(app, 'MyEc2CdkStack');
-
+```
 # Triển khai lên AWS:
+```
 cdk bootstrap
 cdk deploy
-
+```
 # Xóa resources
+```
 cdk destroy
+```
