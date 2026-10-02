@@ -19,7 +19,7 @@
 1. Add environment variable for DynamoDB
    - **Key**: `DYNAMODB_TABLE`
    - **Value**: `students`
-2. Add environment variable for Redis
+1. Add environment variable for Redis
    - **Key**: `REDIS_HOST`
    - **Value**: YOUR_REDIS_URL
    - **Key**: `REDIS_PORT`
@@ -27,17 +27,9 @@
 
 ### Step 3: Add DynamoDB Permissions to Lambda Role
 Add `AmazonDynamoDBReadOnlyAccess` to Lambda role.
-Add `AWSLambdaVPCAccessExecutionRole` to Lambda role.
+   
 
-### Step 4: Modify lambda to run inside VPC:
-1. Go to **"Configuration"** tab
-2. Click **"VPC"** in the left menu
-3. Click **Edit**
-4. Select your VPC and Subnets
-5. Click **Save**
-
-
-### Step 6: Test Lambda Function
+### Step 4: Test Lambda Function
 1. In Lambda console, go to **"Test"** tab
 2. Click **"Create new event"**
 3. **Event name**: `TestGetStudent`

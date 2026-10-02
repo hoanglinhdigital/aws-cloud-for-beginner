@@ -1,7 +1,7 @@
 #!/bin/bash
 yum install httpd -y
-service httpd start
-chconfig httpd on
+systemctl start httpd
+systemctl enable httpd
 
 cd /var/www/html
 echo "<html>" > index.html
