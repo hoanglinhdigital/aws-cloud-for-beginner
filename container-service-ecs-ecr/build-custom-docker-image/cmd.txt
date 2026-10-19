@@ -4,4 +4,18 @@ docker build -t my-httpd .
 
 docker images
 
-docker run -dit --name my-httpd-app -p 8080:80 my-httpd:v1.0
+docker run -dit --name my-httpd-app -p 8080:80 my-httpd:latest
+
+
+# Update file index.html sau đó build lại docker image với tag mới:
+
+docker build -t my-httpd:v1.1 .
+
+docker run -dit --name my-httpd-app2 -p 8081:80 my-httpd:v1.1
+
+
+# Remove unused container
+
+docker stop my-httpd-app my-httpd-app2
+docker rm my-httpd-app my-httpd-app2
+docker rmi my-httpd:v1.1 my-httpd:latest
